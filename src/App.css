@@ -3,11 +3,12 @@ canvas {
   border-left: 1px dotted black;
   border-bottom: 1px dotted black;
   border-right: 1px dotted black;
-  width: 100vw;
-  height: 100vh;
-  top: 140px;
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: calc(100% - 140px);
+  top: 140px;
+
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -30,7 +31,7 @@ canvas {
 }
 
 .toolbar {
-  border-bottom: 1px dotted black;
+  background: white;
   overflow: hidden;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
@@ -48,6 +49,7 @@ canvas {
   line-height: 125px;
   font-size: 35px;
   background: #eee;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,9 +68,15 @@ canvas {
 }
 
 .text_area {
+  border-bottom: 1px dotted black;
+  pointer-events: text;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
+
+  word-wrap: break-all;
+  overflow-wrap: break-all;
+  white-space: normal;
   padding: 10px;
 }
