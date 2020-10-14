@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+canvas {
+  cursor: crosshair;
+  border-left: 1px dotted black;
+  border-bottom: 1px dotted black;
+  border-right: 1px dotted black;
+  width: 100vw;
+  height: 100vh;
+  top: 140px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+[contentEditable="true"]:empty:not(:focus):before {
+  content: attr(data-text);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.left_nav {
+  padding-left: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.right_nav {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  padding-right: 20px;
+}
+
+.toolbar {
+  border-bottom: 1px dotted black;
+  overflow: hidden;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.text_container {
+  font-family: "Helvetica";
+  letter-spacing: 3px;
+  line-height: 125px;
+  font-size: 35px;
+  background: #eee;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 0;
+  position: absolute;
+  top: 140px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 86%;
+  resize: none;
+  z-index: 1;
+  background: transparent;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text_area {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  padding: 10px;
 }
