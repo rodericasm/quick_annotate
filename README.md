@@ -1,6 +1,6 @@
 ## Quick Annotate
 
-[https://rodericasm.github.io/quick-annotate/]: Demo here.
+[Demo here.](https://rodericasm.github.io/quick-annotate/)
 
 Small WYSIWYG to mark up text with the pen tool!
 
