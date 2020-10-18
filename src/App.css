@@ -4,7 +4,7 @@ canvas {
   padding: 0;
   width: 100%;
   height: calc(100% - 140px);
-  top: 140px;
+  top: 0;
 
   position: absolute;
   left: 50%;
@@ -66,9 +66,10 @@ canvas {
   justify-content: center;
   margin: 0;
   position: absolute;
-  top: 140px;
+
   margin: 0;
   padding: 0;
+  padding-top: 60px;
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
