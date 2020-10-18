@@ -1,14 +1,37 @@
 import React, {useEffect, useState} from "react";
 import "./App.css";
 
+
 export default function App() {
 
-  var [mode, set_mode] = useState("init");
+  var [mode, set_mode] = useState("loading");
+
 
   useEffect(() => {
-
     switch (mode) {
       case "init":
+        var my_canvas = document.getElementById("myCanvas");
+        var text_container = document.getElementById("text_container");
+        var text_area = document.getElementById("text_area"); 
+        var loading_screen = document.getElementById("loading_screen");
+        loading_screen.style.display = "none";
+        text_area.setAttribute("data-text", "");
+        text_area.innerHTML = "Welcome to Quick Annotate! This is a sample text, draw and annotate around me. Press the button above to edit me!"
+        text_container.style.height = text_container.getBoundingClientRect().height + "px";
+        text_container.style.width = text_container.getBoundingClientRect().width + "px";
+        my_canvas.style.width = my_canvas.style.width;
+        my_canvas.style.pointerEvents = "auto";
+        text_container.style.pointerEvents = "none";
+        
+        if (document.documentElement.clientHeight > text_container.getBoundingClientRect().height) {
+          my_canvas.style.height = document.documentElement.clientHeight + "px";
+          window.resize_paper(document.documentElement.clientWidth, document.documentElement.clientHeight);
+        }
+        if (text_container.getBoundingClientRect().height > document.documentElement.clientHeight) {
+          window.scrollTo(0, 0);
+          my_canvas.style.height = (text_container.getBoundingClientRect().height + 140) + "px";
+          window.resize_paper(document.documentElement.clientWidth, (text_container.getBoundingClientRect().height + 140));
+        }
         break;
       case "draw":
         var my_canvas = document.getElementById("myCanvas");
@@ -20,6 +43,8 @@ export default function App() {
         my_canvas.style.width = my_canvas.style.width;
         my_canvas.style.pointerEvents = "auto";
         text_container.style.pointerEvents = "none";
+        text_area.style.borderBottom = "";
+        my_canvas.style.borderBottom = "1px dotted black  ";
         
         if (document.documentElement.clientHeight > text_container.getBoundingClientRect().height) {
           my_canvas.style.height = document.documentElement.clientHeight + "px";
@@ -38,14 +63,15 @@ export default function App() {
         var text_area = document.getElementById("text_area");
         window.clear_canvas();
         text_area.innerHTML = "";
-        text_area.setAttribute("data-text", "Enter text here!");
+        text_area.setAttribute("data-text", "Enter text here. Then press the button above to draw and annotate!");
         text_container.style.height = "";
         text_container.style.width = "86%";
+        text_area.style.borderBottom = "1px dotted black";
+        my_canvas.style.borderBottom = "";
         my_canvas.style.height = 'calc(100% - 140px)';
         my_canvas.style.width = "100%";
         my_canvas.style.pointerEvents = "none";
         text_container.style.pointerEvents = "auto";
-
         break;
       default:
         break;
@@ -53,34 +79,41 @@ export default function App() {
  
   }, [mode]); 
 
+ 
   const edit_state = () => {
     window.location.reload();
   }
 
-  const set_mode_elements = () => {
-    
-
-
-    
-  }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (window.paperscript_ready){
+        set_mode("init");
+        clearInterval(interval);
+      }
+    }, 1000);
+    }, []);
   
   return (
     <div className="App">
+      <div className="loading_screen" id="loading_screen">
+        <p>Loading Quick Annotate....</p>
+      </div>
       <div className="toolbar">
       {mode == "edit" ?
              <div className="center_nav">
-<svg onClick={() => set_mode("draw")} width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-file-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
-  <path d="M6 10.117V5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43z"/>
-</svg>
- 
-                 </div> 
+                  <svg onClick={() => set_mode("draw")} width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-file-play" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
+                    <path d="M6 10.117V5.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43z"/>
+                  </svg>
+
+
+              </div> 
                  :
                      <div className="center_nav">
-                                           <svg onClick={() => set_mode("edit")} width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-               </svg>
+                       <svg onClick={() => set_mode("edit")} width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                       </svg>
+
                          </div> 
                          }
 
@@ -90,7 +123,7 @@ export default function App() {
       </div>
 
       <div className="text_container" id="text_container">
-  <div className="text_area" id="text_area" lang="en" contenteditable="true" data-text="Enter text here!" spellcheck="false"></div>
+  <div className="text_area" id="text_area" lang="en" contenteditable="true" data-text="" spellcheck="false"></div>
 </div>
 <canvas id="myCanvas" resize="true"></canvas>
 

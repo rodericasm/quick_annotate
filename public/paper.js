@@ -2,6 +2,7 @@
 // before firing the next onMouseDrag event:
 
 var path;
+console.log("helloz");
 function onMouseDown(event) {
   // Create a new path and give it a stroke color:
   path = new Path();
@@ -20,6 +21,8 @@ function onMouseDrag(event) {
 
 function onFrame(event) {
 }
+
+window.paperscript_ready = true;
 
 window.clear_canvas = function () {
   project.clear();

@@ -1,8 +1,5 @@
 canvas {
   cursor: crosshair;
-  border-left: 1px dotted black;
-  border-bottom: 1px dotted black;
-  border-right: 1px dotted black;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -14,11 +11,27 @@ canvas {
   transform: translate(-50%, 0);
 }
 
+.loading_screen {
+  z-index: 99999;
+  height: 100%;
+  width: 100%;
+  background: white;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading_screen > p {
+  font-family: "Helvetica";
+}
+
 [contentEditable="true"]:empty:not(:focus):before {
   content: attr(data-text);
 }
 
 .center_nav {
+  cursor: pointer;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -28,14 +41,17 @@ canvas {
 .toolbar {
   background: white;
   overflow: hidden;
-  position: fixed; /* Set the navbar to fixed position */
-  top: 0; /* Position the navbar at the top of the page */
-  width: 100%; /* Full width */
+  position: fixed;
+  top: 0;
+  width: 100px;
+  left: 50%;
+  transform: translate(-50%, 0);
   z-index: 2;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid black;
   justify-content: center;
-  height: 70px;
+  height: 60px;
 }
 
 .text_container {
@@ -44,9 +60,7 @@ canvas {
   line-height: 125px;
   font-size: 35px;
   background: #eee;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,13 +79,11 @@ canvas {
 }
 
 .text_area {
-  border-bottom: 1px dotted black;
   pointer-events: text;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
-
   word-wrap: break-all;
   overflow-wrap: break-all;
   white-space: normal;
