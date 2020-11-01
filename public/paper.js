@@ -4,7 +4,10 @@ var path;
 function onMouseDown(event) {
 
   path = new Path();
-  path.strokeColor = "#00000";
+  path.strokeColor = "#FFFFFF";
+  path.strokeWidth = 4;
+  path.strokeJoin = 'round';
+ 
   path.add(event.point);
 }
 

@@ -5,7 +5,6 @@ canvas {
   width: 100%;
   height: calc(100% - 140px);
   top: 0;
-
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
@@ -15,7 +14,7 @@ canvas {
   z-index: 99999;
   height: 100%;
   width: 100%;
-  background: white;
+  background: black;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -24,6 +23,7 @@ canvas {
 
 .loading_screen > p {
   font-family: "Helvetica";
+  color: white;
 }
 
 [contentEditable="true"]:empty:not(:focus):before {
@@ -39,7 +39,7 @@ canvas {
 }
 
 .toolbar {
-  background: white;
+  background: black;
   overflow: hidden;
   position: fixed;
   top: 0;
@@ -49,21 +49,19 @@ canvas {
   z-index: 2;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid black;
+
   justify-content: center;
   height: 60px;
 }
 
 .text_container {
+  color: white;
   font-family: "Helvetica";
   letter-spacing: 3px;
   line-height: 125px;
   font-size: 35px;
-  background: #eee;
+  background: black;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0;
   position: absolute;
 
