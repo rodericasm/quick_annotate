@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/quick_annotate/static/css/main.7ffc69f7.chunk.css",
+    "main.js": "/quick_annotate/static/js/main.74feebbc.chunk.js",
+    "main.js.map": "/quick_annotate/static/js/main.74feebbc.chunk.js.map",
+    "runtime-main.js": "/quick_annotate/static/js/runtime-main.912e3d75.js",
+    "runtime-main.js.map": "/quick_annotate/static/js/runtime-main.912e3d75.js.map",
+    "static/js/2.e567ac3d.chunk.js": "/quick_annotate/static/js/2.e567ac3d.chunk.js",
+    "static/js/2.e567ac3d.chunk.js.map": "/quick_annotate/static/js/2.e567ac3d.chunk.js.map",
+    "index.html": "/quick_annotate/index.html",
+    "precache-manifest.764f90c7955aa5a38d74f6c0dce044d3.js": "/quick_annotate/precache-manifest.764f90c7955aa5a38d74f6c0dce044d3.js",
+    "service-worker.js": "/quick_annotate/service-worker.js",
+    "static/css/main.7ffc69f7.chunk.css.map": "/quick_annotate/static/css/main.7ffc69f7.chunk.css.map",
+    "static/js/2.e567ac3d.chunk.js.LICENSE.txt": "/quick_annotate/static/js/2.e567ac3d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.912e3d75.js",
+    "static/js/2.e567ac3d.chunk.js",
+    "static/css/main.7ffc69f7.chunk.css",
+    "static/js/main.74feebbc.chunk.js"
+  ]
+}
